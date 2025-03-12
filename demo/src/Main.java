@@ -16,6 +16,7 @@ public class Main {
     public static String shortenUrl(String longUrl) {
         int hashCode = longUrl.hashCode();
         int positiveHash = Math.abs(hashCode);
+
         return encodedBase62(positiveHash);
     }
 
@@ -23,10 +24,13 @@ public class Main {
         StringBuilder sb = new StringBuilder();
 
         do {
-            sb.append(CHARACTERS.charAt((int) (number % CHARACTERS.length())));
-            number = number / CHARACTERS.length();
-        } while (number > 0);
 
+            char findChar = CHARACTERS.charAt(number % CHARACTERS.length());
+            sb.append(findChar);
+
+            number = number / CHARACTERS.length();
+
+        } while (number > 0);
 
         return sb.toString();
     }
